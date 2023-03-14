@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Blackjack</h1>
+    </header>
+
+    <main>
+      <div class="buttons">
+        <button class="btn btn-danger">Nuevo juego</button>
+        <button class="btn btn-primary">Pedir carta</button>
+        <button class="btn btn-primary">Detener</button>
+      </div>
+
+      <div class="player">
+        <h2>jugador - <small>0</small></h2>
+        <div class="containerCards">
+          <img class="card" src="assets/cartas/10C.png" alt="" />
+          <img class="card" src="assets/cartas/10C.png" alt="" />
+          <img class="card" src="assets/cartas/10C.png" alt="" />
+          <img class="card" src="assets/cartas/10C.png" alt="" />
+        </div>
+      </div>
+
+      <div class="machine">
+        <h2>Computador - <small>0</small></h2>
+        <div class="containerCards">
+          <img class="card" src="assets/cartas/4C.png" alt="" />
+          <img class="card" src="assets/cartas/4C.png" alt="" />
+          <img class="card" src="assets/cartas/4C.png" alt="" />
+          <img class="card" src="assets/cartas/4C.png" alt="" />
+        </div>
+      </div>
+    </main>
+    <script src="assets/js/underscore-min.js"></script>
+    <script src="assets/js/randomCard.js"></script>
+    <script src="assets/js/juego.js"></script>
+  </body>
+</html>
