@@ -18,3 +18,4 @@
    5. crear logica para detectar 2 jugadores y hacer dinamica la puntiuacion y las cartas
    6. crear funcion createCards
 7. minificar codigo
+8. hacer refactorizacion por modulos

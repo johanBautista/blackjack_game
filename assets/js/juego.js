@@ -1,3 +1,6 @@
+import { cardValue, createCards, getCard } from "./card.js";
+import { createDeck } from "./createDeck.js";
+
 // patron modulo
 const blackjackGame = (() => {
   "use strict";
@@ -15,7 +18,8 @@ const blackjackGame = (() => {
   const containerCardsPlayers = document.querySelectorAll(".containerCards");
 
   const startGame = (numPlayers = 2) => {
-    deck = createDeck();
+    // crear y revolver la baraja
+    console.log(deck, "ll");
     pointsPlayers = [];
     for (let i = 0; i < numPlayers; i++) {
       pointsPlayers.push(0);
@@ -28,50 +32,12 @@ const blackjackGame = (() => {
     btnStopGame.disabled = false;
   };
 
-  // crear y revolver la baraja
-  const createDeck = () => {
-    deck = [];
-    for (let i = 2; i <= 10; i++) {
-      for (let tipo of types) {
-        deck.push(i + tipo);
-      }
-    }
-
-    for (const special of specialCards) {
-      for (let tipo of types) {
-        deck.push(special + tipo);
-      }
-    }
-
-    return barajar(deck);
-  };
-
-  // tomar una card y quitarla del mazo
-  const getCard = () => {
-    if (deck.length === 0) {
-      alert("No hay cards en el deck");
-      return;
-    }
-    return deck.pop();
-  };
-
-  // Obtener valor card
-  const cardValue = (card) => {
-    const valor = card.substring(0, card.length - 1);
-    return isNaN(valor) ? (valor === "A" ? 11 : 10) : valor * 1;
-  };
+  deck = createDeck(types, specialCards);
 
   const acumulatePoints = (card, turn) => {
     pointsPlayers[turn] = pointsPlayers[turn] + cardValue(card);
     htmlPoints[turn].innerText = pointsPlayers[turn];
     return pointsPlayers[turn];
-  };
-
-  const createCards = (card, turn) => {
-    const imgCard = document.createElement("img");
-    imgCard.classList.add("card");
-    imgCard.src = `assets/cartas/${card}.png`;
-    containerCardsPlayers[turn].append(imgCard);
   };
 
   const detectWinner = () => {
@@ -95,7 +61,7 @@ const blackjackGame = (() => {
     let computerPoints = 0;
     do {
       // tomar carta y sumar score
-      const card = getCard();
+      const card = getCard(deck);
       computerPoints = acumulatePoints(card, pointsPlayers.length - 1);
       createCards(card, pointsPlayers.length - 1);
     } while (computerPoints < minimPoints && minimPoints <= 21);
@@ -105,7 +71,7 @@ const blackjackGame = (() => {
 
   // eventos
   btnGetCard.addEventListener("click", () => {
-    const card = getCard();
+    const card = getCard(deck);
     let playerPoints = acumulatePoints(card, 0);
 
     createCards(card, 0);
